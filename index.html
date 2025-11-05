@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vaishnavi Portfolio</title>
+<script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 25% 25%, #010014, #000000 90%);
+  color: #e0e0ff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-attachment: fixed;
+}
+.flashcards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1500px;
+  padding: 50px 0;
+}
+.flashcard {
+  background: rgba(10, 10, 40, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 25px;
+  padding: 40px;
+  margin: 60px 0;
+  width: 80%;
+  max-width: 850px;
+  min-height: 70vh;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15), inset 0 0 25px rgba(0, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  transition: opacity 1s ease-in-out, box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flashcard.visible {
+  opacity: 1;
+}
+.flashcard.hidden {
+  opacity: 0.2;
+}
+.flashcard:hover {
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.4), inset 0 0 40px rgba(0, 255, 255, 0.1);
+  transform: translateY(-10px) rotateX(2deg);
+}
+/* HERO TITLE/SUBTITLE for CARD */
+.hero-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  margin: 0 0 18px 0;
+  letter-spacing: 1px;
+}
+.hero-title span {
+  color: #21ce99;
+}
+.hero-sub {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #75f2d6;
+  margin-bottom: 32px;
+}
+.hero-btns {
+  margin-top: 10px;
+  margin-bottom: 32px;
+}
+.btn-primary, .btn-secondary {
+  cursor: pointer;
+  padding: 12px 28px;
+  margin: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  transition: background .3s, color .3s, border .3s;
+  text-decoration: none;
+  box-shadow: 0 0 7px #21ce9942;
+  display: inline-block;
+}
+.btn-primary {
+  background: #21ce99;
+  color: #0b1a34;
+}
+.btn-primary:hover {
+  background: #64e8c9;
+  color: #0b1a34;
+}
+.btn-secondary {
+  border: 2px solid #21ce99;
+  background: transparent;
+  color: #21ce99;
+}
+.btn-secondary:hover {
+  background: #21ce99;
+  color: #0b1a34;
+}
+.hero-icons {
+  margin-top: 20px;
+}
+.hero-icons a {
+  margin: 0 18px;
+  color: #21ce99;
+  font-size: 2.5rem;
+  text-decoration: none;
+  transition: color .3s;
+}
+.hero-icons a:hover {
+  color: #64e8c9;
+}
+.hero-icons svg {
+  width: 37px;
+  height: 37px;
+  vertical-align: middle;
+}
+
+
+/* ====== OTHER SECTION STYLES REMAIN THE SAME ====== */
+h1, h2, h3 {
+  color: #00e0ff;
+  text-shadow: 0 0 6px rgba(0,224,255,0.7),
+               0 0 12px rgba(0,224,255,0.5),
+               0 0 18px rgba(0,224,255,0.3),
+               0 0 30px rgba(0,128,255,0.15);
+  animation: neon-pulse 3s ease-in-out infinite alternate;
+  letter-spacing: 1px;
+}
+@keyframes neon-pulse {
+  0% {
+    text-shadow: 0 0 4px rgba(0,224,255,0.5),
+                 0 0 8px rgba(0,224,255,0.3),
+                 0 0 14px rgba(0,224,255,0.15),
+                 0 0 24px rgba(0,128,255,0.1);
+  }
+  100% {
+    text-shadow: 0 0 8px rgba(0,224,255,0.8),
+                 0 0 16px rgba(0,224,255,0.6),
+                 0 0 24px rgba(0,224,255,0.4),
+                 0 0 40px rgba(0,128,255,0.2);
+  }
+}
+.skill {margin: 25px 0;}
+.skill span {
+  display: block;
+  margin-bottom: 8px;
+  color: #00e0ff;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px rgba(0,224,255,0.6), 0 0 12px rgba(0,224,255,0.4);
+}
+.progress {
+  background: rgba(255,255,255,0.05);
+  height: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(0,255,255,0.2);
+}
+.progress div {
+  background: linear-gradient(270deg, #00ffff, #007bff, #00ffff);
+  height: 100%;
+  width: 0;
+  animation: shimmer 2s infinite;
+  box-shadow: 0 0 15px #00ffff;
+  transition: width 2s ease-in-out;
+}
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.project-card, .blog-card {
+  background: rgba(20, 20, 60, 0.9);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 20px;
+  border: 1px solid rgba(0,255,255,0.25);
+  box-shadow: 0 0 12px rgba(0,255,255,0.12);
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-card h2 {
+  margin: 0;
+  font-weight: 700;
+  color: #00e0ff;
+  text-shadow: 0 0 10px #00ffff;
+}
+.project-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 30px rgba(0,255,255,0.3);
+}
+.resume-btn {
+  padding: 10px 24px;
+  max-width: 180px;
+  margin: 0 auto;
+  display: block;
+  font-weight: 700;
+  color: #003344; /* dark text for contrast */
+  background: linear-gradient(270deg, #00c2ff, #005588, #00c2ff);
+  background-size: 600% 600%;
+  border-radius: 12px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  box-shadow:
+    0 0 7px rgba(0, 200, 255, 0.3),
+    inset 0 0 4px rgba(0, 100, 130, 0.5);
+  transition: all 0.4s ease-in-out;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+}
+.resume-btn:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 16px rgba(0, 200, 255, 0.45),
+    inset 0 0 8px rgba(0, 100, 130, 0.65);
+  background-position: 100% 50%;
+  color: #001a22;
+}
+@keyframes button-glow { 0%{ background-position:0% 50%; } 100%{ background-position: 100% 50%; } }
+p { line-height: 1.6; color: #d0d0ff; font-weight: 300; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #010014; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#00ffff,#007bff); border-radius:5px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg,#00eaff,#0066ff); }
+
+/* Popup styling */
+#project-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(10,10,40,0.95);
+  box-shadow: 0 0 40px #00e0ff, 0 0 20px rgba(0,255,255,0.07);
+  border-radius: 25px;
+  width: 80%;
+  max-width: 850px;
+  min-height: 70vh;
+  padding: 40px;
+  display: none;
+  flex-direction: column;
+  text-align: center;
+  z-index: 10000;
+}
+#close-popup {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: #00e0ff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+#close-popup:hover {
+  color: #64e8c9;
+}
+#popup-title {
+  color: #00e0ff;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+#popup-stack {
+  color: #75f2d6;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+#popup-desc {
+  color: #d6d9f5;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+<div class="flashcards-container">
+  <!-- HERO/CARD AT TOP -->
+  <div class="flashcard visible" style="min-height: 45vh;">
+    <h1 class="hero-title">Hi, I'm <span>VAISHNAVI IYER S</span></h1>
+    <div class="hero-sub">AI/ML Enthusiast | AI Developer | NLP Developer</div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View My Work</a>
+    </div>
+    <div class="hero-icons">
+      <a href="https://www.linkedin.com/in/vaishnaviiyers" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.79 0-5 2.21-5 5v14c0 2.79 2.21 5 5 5h14c2.79 0 5-2.21 5-5v-14c0-2.79-2.21-5-5-5zm-11.75 20h-3v-11h3v11zm-1.5-12.34c-.96 0-1.75-.8-1.75-1.75s.79-1.75 1.75-1.75 1.75.8 1.75 1.75-.8 1.75-1.75 1.75zm13.25 12.34h-3v-5.75c0-1.35-1.1-2.45-2.45-2.45s-2.45 1.1-2.45 2.45v5.75h-3v-11h3v1.3c.73-1.06 2.07-1.64 3.4-1.52 2.45.23 4.55 2.5 4.55 5.06v5.16z"></path></svg>
+      </a>
+      <a href="https://github.com/Vaishu1611" target="_blank" aria-label="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234c-3.338.724-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.305 3.492.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.931 0-1.31.468-2.381 1.236-3.221-.123-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.301 1.23a11.53 11.53 0 0 1 3.003-.404c1.018.005 2.043.138 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.233 1.911 1.233 3.221 0 4.607-2.807 5.628-5.479 5.921.43.369.823 1.098.823 2.214v3.293c0 .32.218.695.825.577 4.765-1.588 8.2-6.084 8.2-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+      </a>
+    </div>
+  </div>
+  <!-- ABOUT ME -->
+  <div class="flashcard">
+    <h1>ABOUT ME</h1>
+    <p>I'm Vaishnavi, a Computer Science and Engineering student at Easwari Engineering College specializing in Artificial Intelligence and Machine Learning. My curiosity about human communication and emotion led me to explore Natural Language Processing — where language becomes a bridge between humans and machines. I’m passionate about building AI systems that are not only functional but also emotionally aware and human-centered.</p>
+    <p>Technically, I’m skilled in Python and Java, with experience in FastAPI, NLP techniques like TF-IDF, LDA, Word2Vec, and Doc2Vec, and web development using HTML, CSS, and JavaScript. I use tools like VS Code, GitHub, and Postman for development and testing. Currently, I’m deepening my knowledge of large language models, prompt engineering, and fine-tuning to create meaningful, expressive AI applications.</p>
+  </div>
+  <!-- SKILLS -->
+  <div class="flashcard">
+    <h1>TECH SKILLS</h1>
+    <div class="skill"><span>Python</span><div class="progress"><div style="width:80%"></div></div></div>
+    <div class="skill"><span>FastAPI</span><div class="progress"><div style="width:70%"></div></div></div>
+    <div class="skill"><span>HTML/CSS</span><div class="progress"><div style="width:75%"></div></div></div>
+    <div class="skill"><span>Java</span><div class="progress"><div style="width:85%"></div></div></div>
+    <div class="skill"><span>LDA</span><div class="progress"><div style="width:70%"></div></div></div>
+    <div class="skill"><span>TF-IDF</span><div class="progress"><div style="width:70%"></div></div></div>
+    <div class="skill"><span>Word2Vec</span><div class="progress"><div style="width:70%"></div></div></div>
+  </div>
+  <!-- PROJECTS -->
+  <div class="flashcard" id="projects">
+    <h1>PROJECTS</h1>
+    <div class="project-list">
+      <div class="project-card" data-title="MindPlay — Java Console Quiz"
+           data-stack="Java, OOP, Scanner"
+           data-desc="MindPlay is a lightweight console-based quiz application developed in Java, aimed at delivering an engaging and interactive learning experience through multiple-choice questions. The game runs entirely in the terminal, requiring no external dependencies, making it an ideal offline tool for testing general knowledge, logical thinking, and coding fundamentals. Built with clean object-oriented principles, MindPlay features modular class design, topic-based question categorization, randomized question ordering, and real-time score tracking. It was my first structured software project, where I not only deepened my understanding of Java syntax and control flow, but also learned to structure code using principles like separation of concerns, reusable methods, and data encapsulation. This project helped me appreciate the value of clean code, user-friendly terminal interfaces, and modular architecture — lessons that continue to shape my development practices today. ">
+        <h2>MindPlay — Java Console Quiz</h2>
+      </div>
+      <div class="project-card" data-title="Static Blogging Website"
+           data-stack="HTML, CSS, JS"
+           data-desc="This project is a lightweight, responsive static blog where posts are structured in separate HTML pages or dynamically rendered using JavaScript. The design emphasizes readability, clean layout, and smooth navigation. Built without any frameworks or backend, it served as a great exercise in organizing content, structuring static routes, and practicing layout techniques using pure HTML and CSS. JavaScript was used for simple interactivity like menu toggles and dynamic post loading. Ideal for hosting on GitHub Pages or any static site platform. ">
+        <h2>Static Blogging Website</h2>
+      </div>
+      <div class="project-card" data-title="FoodBot — Dialogflow Chatbot"
+           data-stack="Dialogflow, Python, FastAPI, MySQL"
+           data-desc="FoodBot is a fully functional conversational AI system built using Dialogflow, designed to simulate a food delivery assistant. This project walks through every stage of chatbot creation — from defining intents, entities, and contexts in Dialogflow to implementing a custom backend using FastAPI and Python. It integrates with a MySQL database to handle real-time restaurant menus, order tracking, and user sessions. This project helped me understand the synergy between conversational design and backend logic, giving me hands-on experience with both NLP workflows and real-time data handling. It's a comprehensive project aimed at combining AI dialogue management with robust server-side integration.">
+        <h2>FoodBot — Dialogflow Chatbot</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP FLASHCARD FOR PROJECT DETAILS -->
+  <div id="project-popup">
+    <button id="close-popup" title="Close project popup">&times;</button>
+    <h2 id="popup-title"></h2>
+    <p><strong>Tech Stack:</strong> <span id="popup-stack"></span></p>
+    <p id="popup-desc"></p>
+  </div>
+
+  <!-- RESUME -->
+  <div class="flashcard">
+    <h1>RESUME</h1>
+    <a href="https://drive.google.com/file/d/1b0hl7hwk-9m_Oy_5hNXL_annYgruaZ15/view?usp=drive_link" download class="resume-btn">Download My Resume</a>
+  </div>
+  <!-- ACHIEVEMENTS -->
+  <div class="flashcard">
+    <h1>ACHIEVEMENTS</h1>
+    <p>Top LeetCode Performer — Awarded by Dr. Deiva Sundari P...</p>
+    <p>Co-hosted LeetCode Orientation for first-year students...</p>
+  </div>
+  <!-- WORKSHOPS -->
+  <div class="flashcard">
+    <h1>WORKSHOPS</h1>
+    <p>Powering the Future: Guest Lecture on Cloud & Hadoop — August 1, 2025</p>
+    <p>Workshop on Hadoop: Unleashing the Power of Big Data — July 23, 2025</p>
+  </div>
+  <!-- BLOGS -->
+  <div class="flashcard">
+    <h1>BLOGS</h1>
+    <div class="blog-card">
+      <h2>Code, Calm, and Creativity</h2>
+      <p>Listening to music and reading books help me focus and stay creative...</p>
+    </div>
+    <div class="blog-card">
+      <h2>What Are Large Language Models (LLMs)</h2>
+      <p>LLMs are systems trained on vast amounts of language, capable of understanding context and generating responses...</p>
+    </div>
+    <div class="blog-card">
+      <h2>Quantum Mechanics — Why It’s the Future</h2>
+      <p>Quantum mechanics enables computing beyond classical limits, redefining tech possibilities...</p>
+    </div>
+  </div>
+</div>
+<script>
+const sr = ScrollReveal({
+  distance: '80px',
+  duration: 1600,
+  easing: 'ease-in-out',
+  scale: 0.95,
+  reset: true
+});
+sr.reveal('.flashcard', {
+  interval: 200,
+  origin: 'bottom',
+  beforeReveal: (el) => {
+    const progressBars = el.querySelectorAll('.progress div');
+    progressBars.forEach(bar => {
+      const width = bar.getAttribute('style')?.match(/width:(\d+%)/)?.[1];
+      if (width) {
+        bar.style.width = '0';
+        setTimeout(() => { bar.style.width = width; }, 300);
+      }
+    });
+    el.classList.add('visible');
+    el.classList.remove('hidden');
+  },
+  beforeReset: (el) => {
+    el.classList.add('hidden');
+    el.classList.remove('visible');
+  }
+});
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelector('.flashcard').classList.add('visible');
+});
+// Project popup logic
+const projectCards = document.querySelectorAll('.project-card');
+const projectPopup = document.getElementById('project-popup');
+const closeBtn = document.getElementById('close-popup');
+const popupTitle = document.getElementById('popup-title');
+const popupStack = document.getElementById('popup-stack');
+const popupDesc = document.getElementById('popup-desc');
+const projectList = document.querySelector('.project-list');
+
+projectCards.forEach(card => {
+  card.addEventListener('click', () => {
+    popupTitle.textContent = card.getAttribute('data-title');
+    popupStack.textContent = card.getAttribute('data-stack');
+    popupDesc.textContent = card.getAttribute('data-desc');
+    projectPopup.style.display = 'block';
+    projectList.style.display = 'none';
+  });
+});
+closeBtn.addEventListener('click', () => {
+  projectPopup.style.display = 'none';
+  projectList.style.display = 'flex';
+});
+</script>
+</body>
+</html>
