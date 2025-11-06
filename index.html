@@ -340,52 +340,70 @@ p { line-height: 1.6; color: #d0d0ff; font-weight: 300; }
   .hero-icons svg { width: 28px; height: 28px; }
 }
 
-/* ACHIEVEMENTS: horizontal scroll with exactly 2 boxes visible side-by-side */
+/* === ACHIEVEMENTS HORIZONTAL SCROLL (SIDE BY SIDE) === */
 #achievements {
-  padding-bottom: 20px;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: none;
+  box-shadow: none;
+  padding-bottom: 20px;
+  min-height: auto;
+  overflow: visible;
+}
+#achievements h1 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.achievements-row {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  width: 100%;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-bottom: 8px;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
-  /* constrain height so scrollbar is visible if needed */
-  min-height: 230px;
 }
 
-#achievements p {
-  background: rgba(0,255,255,0.15);
-  border: 1.5px solid #21ce99aa;
-  border-radius: 15px;
-  padding: 20px 30px;
-  min-width: calc((100% / 2) - 20px); /* half width minus gap */
-  box-sizing: border-box;
-  box-shadow: 0 0 10px #21ce99aa;
-  font-weight: 400;
-  color: #d0e8f8;
-  cursor: default;
-  flex-shrink: 0; /* prevent shrinking */
-  user-select: none;
-  transition: background-color 0.3s ease;
-}
-
-#achievements p:hover {
-  background: rgba(33,206,153,0.35);
-  box-shadow: 0 0 20px #21ce9975;
-}
-
-/* Scrollbar Styling */
-#achievements::-webkit-scrollbar {
+.achievements-row::-webkit-scrollbar {
   height: 10px;
 }
-#achievements::-webkit-scrollbar-track {
+.achievements-row::-webkit-scrollbar-track {
   background: transparent;
 }
-#achievements::-webkit-scrollbar-thumb {
+.achievements-row::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg,#00ffff,#007bff);
   border-radius: 5px;
 }
-#achievements::-webkit-scrollbar-thumb:hover {
+.achievements-row::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg,#00eaff,#0066ff);
+}
+
+.achievements-row p {
+  min-width: 380px;
+  max-width: 520px;
+  background: rgba(0, 255, 255, 0.15);
+  border: 1.5px solid #21ce99aa;
+  border-radius: 15px;
+  padding: 26px 32px;
+  box-shadow: 0 0 10px #21ce99aa;
+  color: #d0e8f8;
+  font-weight: 400;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.achievements-row p:hover {
+  background: rgba(33, 206, 153, 0.35);
+  box-shadow: 0 0 20px #21ce9975;
 }
 </style>
 </head>
@@ -474,9 +492,11 @@ p { line-height: 1.6; color: #d0d0ff; font-weight: 300; }
 
   <!-- ACHIEVEMENTS -->
   <div class="flashcard" id="achievements">
-    <h1>ACHIEVEMENTS</h1>
-    <p>Grateful to share a proud moment where I was awarded as the Top LeetCode Performer, presented by Dr. Deiva Sundari P. This recognition truly humbled me and served as a testament to the consistency and dedication I’ve put into problem-solving and algorithmic learning. I extend my heartfelt thanks to Dr. Justin Dhas Y sir for his unwavering support throughout this journey—his mentorship has kept me motivated and focused. This milestone fuels my passion for continuous learning and encourages me to aim even higher in competitive programming and real-world coding challenges.</p>
-    <p>I had the incredible opportunity to co-host a LeetCode Orientation session for first-year students, alongside my senior Jhaishnavi Saravanan and our HOD Dr. Justin Dhas Y. This session was designed to introduce students to the world of Data Structures & Algorithms (DSA) and help them kickstart their journey on LeetCode. We covered essential topics such as the importance of problem-solving, smart strategies to boost coding efficiency, and a practical roadmap for cracking coding interviews. It was a rewarding experience to mentor and guide juniors, share real-world tips, and spark curiosity in them. I’m especially grateful to Dr. Justin Dhas Y and Dr. Jeyaram Ganesan for their constant encouragement and for empowering us to lead such impactful sessions. Working with Jhaishnavi on this initiative was both fun and inspiring. Moments like these reinforce my passion for peer learning and leadership in tech communities.</p>
+    <h1 class="achievements-heading">ACHIEVEMENTS</h1>
+    <div class="achievements-row">
+      <p>Grateful to share a proud moment where I was awarded as the Top LeetCode Performer, presented by Dr. Deiva Sundari P. This recognition truly humbled me and served as a testament to the consistency and dedication I’ve put into problem-solving and algorithmic learning. I extend my heartfelt thanks to Dr. Justin Dhas Y sir for his unwavering support throughout this journey—his mentorship has kept me motivated and focused. This milestone fuels my passion for continuous learning and encourages me to aim even higher in competitive programming and real-world coding challenges.</p>
+      <p>I had the incredible opportunity to co-host a LeetCode Orientation session for first-year students, alongside my senior Jhaishnavi Saravanan and our HOD Dr. Justin Dhas Y. This session was designed to introduce students to the world of Data Structures & Algorithms (DSA) and help them kickstart their journey on LeetCode. We covered essential topics such as the importance of problem-solving, smart strategies to boost coding efficiency, and a practical roadmap for cracking coding interviews. It was a rewarding experience to mentor and guide juniors, share real-world tips, and spark curiosity in them. I’m especially grateful to Dr. Justin Dhas Y and Dr. Jeyaram Ganesan for their constant encouragement and for empowering us to lead such impactful sessions. Working with Jhaishnavi on this initiative was both fun and inspiring. Moments like these reinforce my passion for peer learning and leadership in tech communities.</p>
+    </div>
   </div>
 
   <!-- WORKSHOPS -->
