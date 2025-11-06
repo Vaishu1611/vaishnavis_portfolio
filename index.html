@@ -30,7 +30,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 0 0 0;
+  padding: 0;
   min-height: 60px;
   border-bottom: 1.5px solid #21ce99AA;
 }
@@ -189,6 +189,12 @@ h1, h2, h3 {
                  0 0 40px rgba(0,128,255,0.2);
   }
 }
+
+/* About Me paragraph justification */
+#about p {
+  text-align: justify;
+}
+
 .skill {margin: 25px 0;}
 .skill span {
   display: block;
@@ -247,7 +253,7 @@ h1, h2, h3 {
 }
 .resume-btn {
   padding: 10px 24px;
-  max-width: 180px;
+  max-width: 200px;
   margin: 0 auto;
   display: block;
   font-weight: 700;
@@ -293,10 +299,10 @@ p { line-height: 1.6; color: #d0d0ff; font-weight: 300; }
   max-width: 850px;
   min-height: 70vh;
   padding: 40px;
-  display: none;
+  display: none; /* hidden by default */
   flex-direction: column;
-  text-align: center;
-  z-index: 10000;
+  text-align: justify;
+  z-index: 30000; /* high to overlay everything */
 }
 #close-popup {
   position: absolute;
@@ -309,6 +315,7 @@ p { line-height: 1.6; color: #d0d0ff; font-weight: 300; }
   font-weight: bold;
   cursor: pointer;
   transition: color 0.3s ease;
+  z-index: 31000;
 }
 #close-popup:hover {
   color: #64e8c9;
@@ -397,11 +404,138 @@ p { line-height: 1.6; color: #d0d0ff; font-weight: 300; }
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  text-align: center;
+  text-align: justify;
   user-select: none;
   transition: background-color 0.3s;
 }
 .achievements-row p:hover {
+  background: rgba(33, 206, 153, 0.35);
+  box-shadow: 0 0 20px #21ce9975;
+}
+
+/* WORKSHOPS HORIZONTAL SCROLL */
+#workshops {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: none;
+  box-shadow: none;
+  padding-bottom: 20px;
+  min-height: auto;
+  overflow: visible;
+}
+#workshops h1 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.workshops-row {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
+.workshops-row::-webkit-scrollbar {
+  height: 10px;
+}
+.workshops-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+.workshops-row::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,#00ffff,#007bff);
+  border-radius: 5px;
+}
+.workshops-row::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg,#00eaff,#0066ff);
+}
+.workshop-card {
+  min-width: 380px;
+  max-width: 520px;
+  background: rgba(0, 255, 255, 0.15);
+  border: 1.5px solid #21ce99aa;
+  border-radius: 15px;
+  padding: 26px 32px;
+  box-shadow: 0 0 10px #21ce99aa;
+  color: #d0e8f8;
+  font-weight: 400;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: justify;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.workshop-card:hover {
+  background: rgba(33, 206, 153, 0.35);
+  box-shadow: 0 0 20px #21ce9975;
+}
+/* BLOGS styled like ACHIEVEMENTS */
+#blogs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: none;
+  box-shadow: none;
+  padding-bottom: 20px;
+  min-height: auto;
+  overflow: visible;
+}
+#blogs h1 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.blogs-row {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
+.blogs-row::-webkit-scrollbar {
+  height: 10px;
+}
+.blogs-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+.blogs-row::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,#00ffff,#007bff);
+  border-radius: 5px;
+}
+.blogs-row::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg,#00eaff,#0066ff);
+}
+.blog-card {
+  min-width: 380px;
+  max-width: 520px;
+  background: rgba(0, 255, 255, 0.15);
+  border: 1.5px solid #21ce99aa;
+  border-radius: 15px;
+  padding: 26px 32px;
+  box-shadow: 0 0 10px #21ce99aa;
+  color: #d0e8f8;
+  font-weight: 400;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;  
+  align-items: flex-start; 
+  text-align: justify;          
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.blog-card:hover {
   background: rgba(33, 206, 153, 0.35);
   box-shadow: 0 0 20px #21ce9975;
 }
@@ -476,14 +610,6 @@ p { line-height: 1.6; color: #d0d0ff; font-weight: 300; }
     </div>
   </div>
 
-  <!-- POPUP FLASHCARD FOR PROJECT DETAILS -->
-  <div id="project-popup">
-    <button id="close-popup" title="Close project popup">&times;</button>
-    <h2 id="popup-title"></h2>
-    <p><strong>Tech Stack:</strong> <span id="popup-stack"></span></p>
-    <p id="popup-desc"></p>
-  </div>
-
   <!-- RESUME -->
   <div class="flashcard" id="resume">
     <h1>RESUME</h1>
@@ -502,26 +628,53 @@ p { line-height: 1.6; color: #d0d0ff; font-weight: 300; }
   <!-- WORKSHOPS -->
   <div class="flashcard" id="workshops">
     <h1>WORKSHOPS</h1>
-    <p>Powering the Future: Guest Lecture on Cloud & Hadoop — August 1, 2025</p>
-    <p>Workshop on Hadoop: Unleashing the Power of Big Data — July 23, 2025</p>
+    <div class="workshops-row">
+      <div class="workshop-card">
+        <h2>Powering the Future: Guest Lecture on Cloud & Hadoop</h2>
+        <p>On August 1st, 2025, our Department of Computer Science and Engineering (Artificial Intelligence & Machine Learning) organized a transformative guest lecture titled “Cloud Infrastructure Development: HADOOP” exclusively for third-year students. The session was delivered by Mr. Anbeswaran Karuppaiah, Associate Consultant at Tata Consultancy Services (TCS), who brought with him not just technical knowledge but real-world industry experience.</p>
+        <p>During the session, we explored the fundamentals and architecture of cloud computing environments, with a sharp focus on Hadoop, the open-source framework for processing vast amounts of data. Mr. Anbeswaran walked us through the MapReduce paradigm, HDFS (Hadoop Distributed File System), and the inner workings of distributed computing — all of which are vital in today’s data-driven world. What made the session truly enriching was the hands-on coding demonstrations. I learned how to work with the Hadoop ecosystem, write MapReduce jobs, and simulate large-scale data processing scenarios. It gave me my first real taste of coding within a distributed system, understanding node-level operations, and how big data infrastructure is built and managed in cloud platforms.</p>
+        <p>The experience broadened my understanding of big data engineering and gave me practical insights into how AI and ML models can be scaled using cloud and Hadoop infrastructure. This session wasn’t just theoretical — it helped lay a foundation for thinking about data at scale, and showed me how concepts I learn in class apply to real-world tech challenges faced by top IT firms.</p>
+      </div>
+      <div class="workshop-card">
+        <h2>Workshop on Hadoop: Unleashing the Power of Big Data!</h2>
+        <p>On 23rd July 2025, the Department of Computer Science and Engineering (Artificial Intelligence & Machine Learning) conducted an enlightening workshop on “Foundation and Applications of Hadoop.” The session was led by Mr. Rajesh Karunakaran, a seasoned Senior Software Engineer, who brought deep technical knowledge and hands-on experience to the event. The workshop focused on demystifying the Hadoop ecosystem, which forms the backbone of modern big data infrastructure.</p>
+        <p>Through this session, students and faculty were introduced to the core components of Hadoop — including HDFS (Hadoop Distributed File System) and MapReduce — and how they enable the storage and processing of massive datasets across distributed systems. One of the most valuable parts of the workshop was the step-by-step walkthrough of the Hadoop installation process. I learned how to set up a Hadoop environment from scratch, configure the required dependencies, and deploy a working cluster on a local machine — a foundational skill for anyone entering the big data or cloud computing domain.</p>
+        <p>Mr. Rajesh also shared real-world use cases and demonstrated how large organizations leverage Hadoop for scalable data solutions in sectors like e-commerce, healthcare, and finance. The workshop not only deepened my understanding of Hadoop as a technology but also enhanced my confidence in handling real-world big data workflows. It emphasized the importance of acquiring industry-relevant, hands-on skills in an ever-expanding digital data landscape.</p>
+      </div>
+    </div>
   </div>
 
   <!-- BLOGS -->
   <div class="flashcard" id="blogs">
     <h1>BLOGS</h1>
-    <div class="blog-card">
-      <h2>Code, Calm, and Creativity</h2>
-      <p>Listening to music and reading books help me focus and stay creative...</p>
-    </div>
-    <div class="blog-card">
-      <h2>What Are Large Language Models (LLMs)</h2>
-      <p>LLMs are systems trained on vast amounts of language, capable of understanding context and generating responses...</p>
-    </div>
-    <div class="blog-card">
-      <h2>Quantum Mechanics — Why It’s the Future</h2>
-      <p>Quantum mechanics enables computing beyond classical limits, redefining tech possibilities...</p>
+    <div class="blogs-row">
+      <div class="blog-card">
+        <h2>Code, Calm, and Creativity</h2>
+        <p>In the world of software development, especially while working on intense projects like NLP models or full-stack apps, mental clarity is just as important as technical skill. For me, two simple habits have become essential tools in my developer toolkit — listening to music and reading books.</p>
+        <p>Whenever I'm deep in debugging or building an AI pipeline, I turn on calming or instrumental music. It helps create a rhythm that reduces stress and increases focus. Lo-fi beats, ambient sounds, or soft piano pieces often guide me through long hours of learning or coding. I’ve found that even during creative moments, like designing prompts for NullBloom or structuring an LDA model for InsightLens, music helps me get in the zone and stay there.</p>
+        <p>Reading, on the other hand, offers me a form of slow thinking — a way to step back and reflect. Whether it's fiction that sparks imagination or non-fiction that expands my problem-solving mindset, reading helps me become a more thoughtful technologist. It strengthens patience and deep focus, both essential when training ML models or debugging backend logic. Books have taught me to approach systems — technical or personal — with structure and empathy.</p>
+        <p>In a fast-moving tech world, it’s easy to get lost in endless learning. But hobbies like reading and music give me the balance I need to stay grounded. They are not distractions — they are fuel. They sharpen my creativity, stabilize my mood, and remind me why I love building things with code.</p>
+      </div>
+      <div class="blog-card">
+        <h2>What Are Large Language Models (LLMs)</h2>
+        <p>Large Language Models (LLMs) are advanced AI systems trained on massive text datasets to understand and generate human-like language. Built on the transformer architecture, they use self-attention to interpret relationships between words across entire sentences, enabling contextual and coherent responses.</p>
+        <p>Through pretraining, LLMs learn general language patterns, while fine-tuning and instruction-tuning adapt them for specific tasks or conversational use — as seen in models like GPT, BERT, and LLaMA.</p>
+        <p>They excel at tasks such as text generation, summarization, translation, and question answering but also face issues like hallucination, bias, and high computational demands. With advancements like quantization and retrieval-augmented generation (RAG), LLMs are becoming more efficient and powerful, transforming fields from education to creative writing and beyond.</p>
+      </div>
+      <div class="blog-card">
+        <h2>Quantum Mechanics — Why It’s the Future</h2>
+        <p>Quantum mechanics may sound like something straight out of a science fiction movie, but it's slowly becoming a game-changer in real-world technology. Unlike classical physics, which deals with predictable outcomes, quantum mechanics explores the strange behavior of particles at the smallest scales — where things can exist in multiple states at once. This opens the door to quantum computing, where computers could solve problems that even today’s fastest machines can’t. From drug discovery to AI optimization, quantum mechanics could redefine how we approach the hardest problems in science and tech. While it’s still developing, understanding its basics now is like standing at the edge of tomorrow’s most powerful breakthroughs.</p>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- PROJECT POPUP: Placed outside all flex and scroll containers -->
+<div id="project-popup">
+  <button id="close-popup" title="Close project popup">&times;</button>
+  <h2 id="popup-title"></h2>
+  <p><strong>Tech Stack:</strong> <span id="popup-stack"></span></p>
+  <p id="popup-desc"></p>
 </div>
 
 <script>
@@ -570,7 +723,7 @@ projectCards.forEach(card => {
     popupTitle.textContent = card.getAttribute('data-title');
     popupStack.textContent = card.getAttribute('data-stack');
     popupDesc.textContent = card.getAttribute('data-desc');
-    projectPopup.style.display = 'block';
+    projectPopup.style.display = 'flex';
     projectList.style.display = 'none';
   });
 });
